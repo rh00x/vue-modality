@@ -1,0 +1,10 @@
+{
+  "name": "vue-modality-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build:core": "pnpm --filter @vue-modality/core build",
+    "dev:site": "pnpm --filter vue-modality-site dev",
+    "build:site": "pnpm --filter vue-modality-site build"
+  }
+}

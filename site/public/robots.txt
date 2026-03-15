@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rh00x.github.io/vue-modality/sitemap.xml
