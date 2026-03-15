@@ -1,7 +1,7 @@
 {
   "name": "@vue-modality/core",
   "version": "0.1.0",
-  "description": "Modal system for Vue 3 with guards, namespaces, and prompt pattern",
+  "description": "Lightweight modal library for Vue 3 with namespace queues, guard system, and promise-based prompt pattern. Zero dependencies.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -13,6 +13,31 @@
       "require": "./dist/index.cjs"
     }
   },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rh00x/vue-modality",
+    "directory": "packages/core"
+  },
+  "homepage": "https://rh00x.github.io/vue-modality/",
+  "bugs": "https://github.com/rh00x/vue-modality/issues",
+  "keywords": [
+    "vue",
+    "vue3",
+    "modal",
+    "dialog",
+    "popup",
+    "toast",
+    "sidebar",
+    "typescript",
+    "promise",
+    "guard",
+    "namespace",
+    "lightweight"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"
