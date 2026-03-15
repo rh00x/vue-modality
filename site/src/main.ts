@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
+import { createSSRApp } from 'vue'
 import App from './app.vue'
 import './style.css'
 
-createApp(App).mount('#app')
+createSSRApp(App).mount('#app')

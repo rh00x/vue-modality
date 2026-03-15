@@ -27,6 +27,9 @@ pnpm-debug.log*
 *.swp
 *.swo
 
+# Playwright CLI
+.playwright-cli/
+
 # Env
 .env
 .env.local

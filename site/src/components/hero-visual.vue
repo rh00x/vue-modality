@@ -4,6 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const progress = ref(0)
 
 function update() {
+  if (typeof window === 'undefined') return
   progress.value = Math.min(1, window.scrollY / (window.innerHeight * 1.2))
 }
 
