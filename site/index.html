@@ -3,20 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://rh00x.github.io/vue-modality/favicon.ico" />
+    <link rel="icon" href="/vue-modality/favicon.svg" />
 
     <!-- SEO -->
-    <title>vue-modality — Lightweight Modal Library for Vue 3</title>
-    <meta name="description" content="Vue 3 modal library with namespace queues, guard system, promise-based prompt pattern, and full TypeScript support. Zero dependencies — only Vue as peer dependency." />
-    <meta name="keywords" content="vue modal, vue 3 modal, vue modal library, vue dialog, vue popup, vue modal component, typescript modal, vue toast, vue sidebar, promise modal, vue 3 dialog, lightweight modal, vue modality" />
+    <title>Vue-modality — Lightweight Modal Library for Vue 3</title>
+    <meta
+      name="description"
+      content="Vue 3 modal library with namespace queues, guard system, promise-based prompt pattern, and full TypeScript support. Zero dependencies — only Vue as peer dependency."
+    />
+    <meta
+      name="keywords"
+      content="vue modal, vue 3 modal, vue modal library, vue dialog, vue popup, vue modal component, typescript modal, vue toast, vue sidebar, promise modal, vue 3 dialog, lightweight modal, vue modality"
+    />
     <meta name="author" content="rh00x" />
-    <meta name="google-site-verification" content="6EYbhxJDdiNA_gOr8IsBIj98w2k4a1Xj1WR3uU4BAU0" />
+    <meta
+      name="google-site-verification"
+      content="6EYbhxJDdiNA_gOr8IsBIj98w2k4a1Xj1WR3uU4BAU0"
+    />
     <link rel="canonical" href="https://rh00x.github.io/vue-modality/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="vue-modality — Lightweight Modal Library for Vue 3" />
-    <meta property="og:description" content="Namespace queues, guard system, promise-based prompt pattern. TypeScript-first, zero dependencies." />
+    <meta
+      property="og:title"
+      content="vue-modality — Lightweight Modal Library for Vue 3"
+    />
+    <meta
+      property="og:description"
+      content="Namespace queues, guard system, promise-based prompt pattern. TypeScript-first, zero dependencies."
+    />
     <meta property="og:url" content="https://rh00x.github.io/vue-modality/" />
     <meta property="og:site_name" content="vue-modality" />
     <meta property="og:locale" content="en_US" />
@@ -24,38 +39,67 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="vue-modality — Vue 3 Modal Library" />
-    <meta name="twitter:description" content="Namespace queues, guard system, promise-based prompt pattern. TypeScript-first, zero dependencies." />
+    <meta
+      name="twitter:description"
+      content="Namespace queues, guard system, promise-based prompt pattern. TypeScript-first, zero dependencies."
+    />
 
     <!-- Structured Data: SoftwareSourceCode -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareSourceCode",
-      "name": "vue-modality",
-      "description": "Lightweight modal library for Vue 3 with namespace queues, guard system, and promise-based prompt pattern. TypeScript-first, zero dependencies.",
-      "url": "https://rh00x.github.io/vue-modality/",
-      "codeRepository": "https://github.com/rh00x/vue-modality",
-      "programmingLanguage": ["TypeScript", "Vue"],
-      "runtimePlatform": "Vue 3",
-      "license": "https://opensource.org/licenses/MIT",
-      "keywords": "vue modal, vue 3, typescript, dialog, toast, sidebar, promise",
-      "author": {
-        "@type": "Person",
-        "name": "rh00x",
-        "url": "https://github.com/rh00x"
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "vue-modality",
+        "description": "Lightweight modal library for Vue 3 with namespace queues, guard system, and promise-based prompt pattern. TypeScript-first, zero dependencies.",
+        "url": "https://rh00x.github.io/vue-modality/",
+        "codeRepository": "https://github.com/rh00x/vue-modality",
+        "programmingLanguage": ["TypeScript", "Vue"],
+        "runtimePlatform": "Vue 3",
+        "license": "https://opensource.org/licenses/MIT",
+        "keywords": "vue modal, vue 3, typescript, dialog, toast, sidebar, promise",
+        "author": {
+          "@type": "Person",
+          "name": "rh00x",
+          "url": "https://github.com/rh00x"
+        }
       }
-    }
     </script>
 
     <!-- Yandex.Metrika -->
     <script type="text/javascript">
-      (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107720538', 'ym');
-      ym(107720538, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        ((k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a));
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js?id=107720538",
+        "ym",
+      );
+      ym(107720538, "init", {
+        ssr: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      });
     </script>
 
     <!-- Шрифты -->
@@ -69,12 +113,22 @@
   <body>
     <div id="app"></div>
     <noscript>
-      <div><img src="https://mc.yandex.ru/watch/107720538" style="position:absolute; left:-9999px;" alt="" /></div>
-      <div style="padding: 2rem; text-align: center; color: #94a3b8; font-family: system-ui, sans-serif;">
+      <div
+        style="
+          padding: 2rem;
+          text-align: center;
+          color: #94a3b8;
+          font-family: system-ui, sans-serif;
+        "
+      >
         <h1>vue-modality</h1>
-        <p>Lightweight modal library for Vue 3 with namespace queues, guard system, and promise-based prompt pattern.</p>
+        <p>
+          Lightweight modal library for Vue 3 with namespace queues, guard
+          system, and promise-based prompt pattern.
+        </p>
         <p>JavaScript is required.</p>
-        <a href="https://github.com/rh00x/vue-modality" style="color: #818cf8;">GitHub →</a>
+        <!--prettier-ignore-->
+        <a href="https://github.com/rh00x/vue-modality" style="color: #818cf8">GitHub →</a>
       </div>
     </noscript>
     <script type="module" src="/src/main.ts"></script>
