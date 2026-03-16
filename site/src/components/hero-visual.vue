@@ -1,242 +1,111 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const progress = ref(0)
-
-function update() {
-  if (typeof window === 'undefined') return
-  progress.value = Math.min(1, window.scrollY / (window.innerHeight * 1.2))
-}
-
-onMounted(() => {
-  update()
-  window.addEventListener('scroll', update, { passive: true })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', update)
-})
-</script>
-
 <template>
-  <div class="w-full max-w-2xl mx-auto mt-20 mb-4 px-4">
-    <div class="scene" :style="`--p: ${progress}`">
-      <div class="stack">
-        <!-- Base layer: browser window -->
-        <div class="layer layer-0">
-          <div class="browser-header">
-            <div class="browser-dots">
-              <span class="dot dot-red" />
-              <span class="dot dot-yellow" />
-              <span class="dot dot-green" />
-            </div>
-            <div class="browser-url">localhost:5173</div>
-          </div>
-          <div class="browser-body">
-            <div class="page-line w-1/3 h-3 mb-3" />
-            <div class="page-line w-2/3 h-2 mb-2" />
-            <div class="page-line w-1/2 h-2 mb-4" />
-            <div class="page-line w-full h-8 mb-3 rounded-lg" />
-            <div class="page-line w-3/4 h-2 mb-2" />
-            <div class="page-line w-1/2 h-2" />
-          </div>
-        </div>
+  <div class="visual">
+    <!-- Large dialog -->
+    <svg class="card card-1" viewBox="0 0 240 170" fill="none">
+      <rect x="1" y="1" width="238" height="168" rx="12" stroke="rgba(99,102,241,0.4)" stroke-width="1.5"/>
+      <line x1="20" y1="30" x2="120" y2="30" stroke="rgba(99,102,241,0.35)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="55" x2="200" y2="55" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="20" y1="70" x2="170" y2="70" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="20" y1="85" x2="130" y2="85" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="148" y="130" width="38" height="20" rx="6" stroke="rgba(255,255,255,0.1)" stroke-width="1.2"/>
+      <rect x="194" y="130" width="38" height="20" rx="6" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+    </svg>
 
-        <!-- Layer 1: backdrop -->
-        <div class="layer layer-1 glass-backdrop" />
+    <!-- Confirm dialog -->
+    <svg class="card card-2" viewBox="0 0 200 140" fill="none">
+      <rect x="1" y="1" width="198" height="138" rx="12" stroke="rgba(168,85,247,0.4)" stroke-width="1.5"/>
+      <line x1="20" y1="30" x2="100" y2="30" stroke="rgba(168,85,247,0.3)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="55" x2="165" y2="55" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="20" y1="70" x2="135" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="110" y="102" width="35" height="18" rx="6" stroke="rgba(255,255,255,0.1)" stroke-width="1.2"/>
+      <rect x="152" y="102" width="35" height="18" rx="6" stroke="rgba(168,85,247,0.3)" stroke-width="1.2"/>
+    </svg>
 
-        <!-- Layer 2: modal 1 -->
-        <div class="layer layer-2">
-          <div class="glass-modal modal-1">
-            <div class="modal-title w-1/2 h-3 mb-3" />
-            <div class="modal-text w-3/4 h-2 mb-2" />
-            <div class="modal-text w-2/3 h-2 mb-4" />
-            <div class="flex gap-2 justify-end">
-              <div class="modal-btn-secondary" />
-              <div class="modal-btn-primary" />
-            </div>
-          </div>
-        </div>
+    <!-- Small alert -->
+    <svg class="card card-3" viewBox="0 0 160 110" fill="none">
+      <rect x="1" y="1" width="158" height="108" rx="12" stroke="rgba(245,158,11,0.35)" stroke-width="1.5"/>
+      <circle cx="80" cy="32" r="10" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/>
+      <line x1="48" y1="58" x2="112" y2="58" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="58" y1="72" x2="102" y2="72" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="54" y="86" width="52" height="16" rx="6" stroke="rgba(245,158,11,0.25)" stroke-width="1.2"/>
+    </svg>
 
-        <!-- Layer 3: backdrop 2 -->
-        <div class="layer layer-3 glass-backdrop" />
-
-        <!-- Layer 4: modal 2 -->
-        <div class="layer layer-4">
-          <div class="glass-modal modal-2">
-            <div class="modal-title w-2/5 h-3 mb-3" />
-            <div class="modal-text w-3/5 h-2 mb-4" />
-            <div class="flex gap-2 justify-end">
-              <div class="modal-btn-primary" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Layer 5: toast -->
-        <div class="layer layer-5 toast-layer">
-          <div class="glass-toast">
-            <div class="toast-icon">✓</div>
-            <div class="toast-text-bar w-20 h-2" />
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Toast -->
+    <svg class="card card-4" viewBox="0 0 160 42" fill="none">
+      <rect x="1" y="1" width="158" height="40" rx="10" stroke="rgba(34,197,94,0.35)" stroke-width="1.5"/>
+      <circle cx="22" cy="21" r="5" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+      <line x1="36" y1="16" x2="90" y2="16" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="36" y1="27" x2="125" y2="27" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
   </div>
 </template>
 
 <style scoped>
-.scene {
-  perspective: 1000px;
-  perspective-origin: 50% 40%;
-}
-
-.stack {
-  transform-style: preserve-3d;
-  transform: rotateX(12deg) rotateY(-8deg);
+.visual {
   position: relative;
-  will-change: transform;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
-/* All layers stacked via grid */
-.layer {
-  grid-area: 1 / 1;
-}
-
-.stack {
-  display: grid;
-}
-
-/* Base layer — browser window */
-.layer-0 {
-  transform: translateZ(0);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(99, 102, 241, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Spread along Z + shift down on scroll */
-.layer-1 { transform: translateZ(calc(var(--p) * 50px)) translateY(calc(var(--p) * 8px)); }
-.layer-2 { transform: translateZ(calc(var(--p) * 55px)) translateY(calc(var(--p) * 10px)); }
-.layer-3 { transform: translateZ(calc(var(--p) * 100px)) translateY(calc(var(--p) * 18px)); }
-.layer-4 { transform: translateZ(calc(var(--p) * 110px)) translateY(calc(var(--p) * 22px)); }
-.layer-5 { transform: translateZ(calc(var(--p) * 160px)) translateY(calc(var(--p) * 30px)); }
-
-/* Browser header */
-.browser-header {
-  background: rgba(30, 30, 40, 0.95);
-  padding: 0.6rem 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.browser-dots { display: flex; gap: 0.35rem; }
-.dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; }
-.dot-red { background: #ff5f57; }
-.dot-yellow { background: #febc2e; }
-.dot-green { background: #28c840; }
-.browser-url {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 0.375rem;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-family: var(--font-mono);
-}
-
-/* Browser body */
-.browser-body {
-  background: rgba(10, 10, 20, 0.95);
-  padding: 1.5rem;
-  min-height: 18rem;
-}
-.page-line {
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 0.25rem;
-}
-
-/* Glass backdrop */
-.glass-backdrop {
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  opacity: calc(0.2 + var(--p) * 0.4);
-}
-
-/* Glass modal */
-.glass-modal {
+.card {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: float-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-.modal-1 {
-  width: 70%;
-  background: rgba(20, 20, 40, 0.97);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-}
-.modal-2 {
-  width: 45%;
-  background: rgba(30, 20, 50, 0.97);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+.card-1 { animation-delay: 0.2s; }
+.card-2 { animation-delay: 0.4s; }
+.card-3 { animation-delay: 0.6s; }
+.card-4 { animation-delay: 0.8s; }
+
+@keyframes float-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) var(--rot);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) var(--rot);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) var(--rot);
+  }
 }
 
-.modal-title { background: rgba(255, 255, 255, 0.15); border-radius: 0.25rem; }
-.modal-text { background: rgba(255, 255, 255, 0.07); border-radius: 0.25rem; }
-
-.modal-btn-primary {
-  width: 3.5rem; height: 1.5rem;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-}
-.modal-btn-secondary {
-  width: 3rem; height: 1.5rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Dialog — top, largest */
+.card-1 {
+  --rot: rotate(-4deg);
+  width: 62%;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 0 20px rgba(99,102,241,0.1));
+  z-index: 1;
 }
 
-/* Toast */
-.toast-layer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 1rem;
+.card-2 {
+  --rot: rotate(3deg);
+  width: 52%;
+  top: 18%;
+  right: 0;
+  filter: drop-shadow(0 0 20px rgba(168,85,247,0.1));
+  z-index: 2;
 }
 
-.glass-toast {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(22, 101, 52, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  border-radius: 0.5rem;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.65rem;
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+.card-3 {
+  --rot: rotate(2deg);
+  width: 40%;
+  bottom: 15%;
+  left: 5%;
+  filter: drop-shadow(0 0 16px rgba(245,158,11,0.08));
+  z-index: 3;
 }
-.toast-icon { color: #4ade80; font-size: 0.6rem; }
-.toast-text-bar {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 0.15rem;
-  width: 3rem;
-  height: 0.4rem;
+
+.card-4 {
+  --rot: rotate(-2deg);
+  width: 42%;
+  bottom: 5%;
+  right: 8%;
+  filter: drop-shadow(0 0 16px rgba(34,197,94,0.08));
+  z-index: 4;
 }
 </style>

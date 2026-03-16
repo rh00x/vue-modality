@@ -9,9 +9,9 @@ import StackedModalsExample from '../examples/stacked-modals-example.vue'
 
 <template>
   <section id="examples" aria-label="Интерактивные примеры" class="py-16 sm:py-24 px-4">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl sm:text-4xl font-bold text-white text-center mb-4">Попробуйте сами</h2>
-      <p class="text-gray-400 text-center mb-10 sm:mb-16 text-sm sm:text-lg">Всё работает прямо здесь — нажимайте и смотрите</p>
+    <div class="max-w-5xl mx-auto">
+      <p class="text-indigo-400 text-sm font-medium tracking-wide mb-3">Примеры</p>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mb-10 sm:mb-16" style="line-height:1.2">Попробуйте сами —<br>всё работает прямо здесь</h2>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
         <BasicDialogExample />

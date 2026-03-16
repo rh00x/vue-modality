@@ -1,86 +1,54 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const features = [
   {
-    icon: '🗂️',
     title: 'Namespace-очереди',
-    description: 'Dialogs, toasts, sidebars — изолированные стеки. Каждый namespace управляется независимо, без конфликтов.',
-    color: '#6366f1'
+    desc: 'Dialogs, toasts, sidebars — изолированные стеки. Каждый namespace управляется независимо, без конфликтов.',
+    accent: '#6366f1'
   },
   {
-    icon: '🛡️',
     title: 'Guard-система',
-    description: 'Отклонение закрытия через sync/async guards. Идеально для подтверждения несохранённых изменений.',
-    color: '#f43f5e'
+    desc: 'Отклонение закрытия через sync/async guards. Идеально для подтверждения несохранённых изменений.',
+    accent: '#f43f5e'
   },
   {
-    icon: '⏳',
     title: 'Prompt-паттерн',
-    description: 'await результата прямо из модального окна. Никакого shared state — просто Promise с типами.',
-    color: '#a855f7'
+    desc: 'await результата прямо из модального окна. Никакого shared state — просто Promise с типами.',
+    accent: '#a855f7'
   },
   {
-    icon: '📡',
     title: 'Event bus',
-    description: 'on/emit между модалкой и вызывающим кодом. Типизированные события без лишней связности.',
-    color: '#22d3ee'
+    desc: 'on/emit между модалкой и вызывающим кодом. Типизированные события без лишней связности.',
+    accent: '#22d3ee'
   },
   {
-    icon: '🔒',
     title: 'Type-safe пропсы',
-    description: 'ComponentProps<T> generic автоматически выводит типы пропсов компонента. Полная TypeScript поддержка.',
-    color: '#fbbf24'
+    desc: 'ComponentProps<T> автоматически выводит типы пропсов компонента. Полная TypeScript поддержка.',
+    accent: '#fbbf24'
   },
   {
-    icon: '📦',
     title: 'Zero dependencies',
-    description: 'Только vue как peer dependency. Никаких транзитивных зависимостей — легковесный и предсказуемый.',
-    color: '#34d399'
+    desc: 'Только Vue как peer dependency. Никаких транзитивных зависимостей.',
+    accent: '#34d399'
   }
 ]
-
-const mousePos = ref<Record<string, { x: string; y: string }>>({})
-
-function onMove(e: MouseEvent, key: string) {
-  const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
-  mousePos.value[key] = {
-    x: `${e.clientX - rect.left}px`,
-    y: `${e.clientY - rect.top}px`
-  }
-}
-
-function onLeave(key: string) {
-  delete mousePos.value[key]
-}
 </script>
 
 <template>
-  <section aria-label="Возможности" class="py-16 sm:py-24 px-4">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl sm:text-4xl font-bold text-white text-center mb-4">Возможности</h2>
-      <p class="text-gray-400 text-center mb-10 sm:mb-16 text-sm sm:text-lg">Всё что нужно для профессиональной работы с модальными окнами</p>
+  <section aria-label="Возможности" class="section">
+    <div class="glass-bg" />
+    <div class="container">
+      <p class="text-indigo-400 text-sm font-medium tracking-wide mb-3">Возможности</p>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mb-10 sm:mb-16" style="line-height:1.2">Всё для профессиональной<br>работы с модальными окнами</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div class="grid">
         <div
-          v-for="feature in features"
-          :key="feature.title"
-          class="magic-card group"
-          :style="{
-            '--accent': feature.color,
-            '--mx': mousePos[feature.title]?.x ?? '50%',
-            '--my': mousePos[feature.title]?.y ?? '50%',
-          }"
-          @pointermove="onMove($event, feature.title)"
-          @pointerleave="onLeave(feature.title)"
+          v-for="f in features"
+          :key="f.title"
+          class="item"
         >
-          <!-- Spotlight on hover -->
-          <div class="spotlight" />
-          <div class="card-content">
-            <div class="text-3xl mb-4">{{ feature.icon }}</div>
-            <h3 class="text-white font-semibold text-lg mb-2">{{ feature.title }}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{{ feature.description }}</p>
-          </div>
+          <div class="item-accent" :style="{ background: f.accent }" />
+          <h3 class="item-title">{{ f.title }}</h3>
+          <p class="item-desc">{{ f.desc }}</p>
         </div>
       </div>
     </div>
@@ -88,46 +56,65 @@ function onLeave(key: string) {
 </template>
 
 <style scoped>
-.magic-card {
+.section {
+  padding: 6rem 1.5rem;
   position: relative;
-  border-radius: 0.75rem;
-  border: 1px solid transparent;
-  background:
-    linear-gradient(rgba(18, 18, 30, 0.95) 0 0) padding-box,
-    radial-gradient(
-      300px circle at var(--mx) var(--my),
-      color-mix(in srgb, var(--accent) 40%, transparent),
-      rgba(255, 255, 255, 0.06) 100%
-    ) border-box;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  cursor: default;
-  transition: box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-.magic-card:hover {
-  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 8%, transparent);
-}
-
-.spotlight {
+.glass-bg {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    350px circle at var(--mx) var(--my),
-    color-mix(in srgb, var(--accent) 4%, transparent),
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  inset: 2rem;
+  border-radius: 2rem;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(99, 102, 241, 0.06), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(168, 85, 247, 0.05), transparent 70%),
+    rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   pointer-events: none;
 }
 
-.magic-card:hover .spotlight {
-  opacity: 1;
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
 }
 
-.card-content {
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 5rem;
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+.item {
+  padding-left: 1rem;
   position: relative;
-  padding: 1.5rem;
+}
+
+.item-accent {
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 3px;
+  height: 1.2rem;
+  border-radius: 2px;
+}
+
+.item-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.item-desc {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  line-height: 1.7;
 }
 </style>

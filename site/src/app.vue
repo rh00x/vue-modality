@@ -46,7 +46,6 @@ import ApiSection from "./sections/api-section.vue";
   pointer-events: none;
   background:
     radial-gradient(ellipse 80% 50% at 20% 10%, rgba(99, 102, 241, 0.2) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 60%);
 }
 </style>
