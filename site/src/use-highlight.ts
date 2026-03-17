@@ -1,19 +1,21 @@
 import { ref, watchEffect, type Ref } from 'vue'
 import { createHighlighterCore, type HighlighterCore } from 'shiki/core'
-import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
 let highlighterPromise: Promise<HighlighterCore> | null = null
 
 function getHighlighter(): Promise<HighlighterCore> {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighterCore({
-      themes: [import('shiki/themes/github-dark-default.mjs')],
+      themes: [import('shiki/themes/vitesse-light.mjs')],
       langs: [import('shiki/langs/typescript.mjs')],
-      engine: createOnigurumaEngine(import('shiki/wasm'))
+      engine: createJavaScriptRegexEngine()
     })
   }
   return highlighterPromise
 }
+
+export { getHighlighter }
 
 export function useHighlight(code: Ref<string> | string) {
   const html = ref('')
@@ -23,7 +25,7 @@ export function useHighlight(code: Ref<string> | string) {
     const hl = await getHighlighter()
     html.value = hl.codeToHtml(source, {
       lang: 'typescript',
-      theme: 'github-dark-default'
+      theme: 'vitesse-light'
     })
   })
 

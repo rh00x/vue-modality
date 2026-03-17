@@ -22,21 +22,21 @@ function cancel() {
 </script>
 
 <template>
-  <div class="bg-[#0d0d1a]/90 backdrop-blur-xl rounded-xl shadow-2xl p-6 w-full max-w-md mx-4 border border-white/10">
-    <h2 class="text-xl font-semibold text-white mb-3">Диалог с гардом</h2>
-    <p class="text-slate-300 mb-4">Backdrop, кнопка — любое закрытие заблокировано гардом.</p>
+  <div class="dialog">
+    <h2 class="font-display text-2xl font-bold text-[#171717] mb-3 tracking-tight">Диалог с гардом</h2>
+    <p class="text-[#666] text-sm leading-relaxed mb-6">Backdrop, кнопка — любое закрытие заблокировано гардом.</p>
 
-    <div v-if="pendingResolve" class="bg-yellow-900/30 border border-yellow-600/30 rounded-xl p-4 mb-4">
-      <p class="text-yellow-300 text-sm mb-3">Гард перехватил закрытие. Продолжить?</p>
+    <div v-if="pendingResolve" class="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-4">
+      <p class="text-amber-700 text-sm mb-3">Гард перехватил закрытие. Продолжить?</p>
       <div class="flex gap-2">
         <button
-          class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-full text-sm transition-colors cursor-pointer"
+          class="px-4 py-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm rounded-xl transition-colors cursor-pointer"
           @click="confirm"
         >
           Да, закрыть
         </button>
         <button
-          class="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-colors cursor-pointer"
+          class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-[#666] text-sm rounded-xl transition-colors cursor-pointer"
           @click="cancel"
         >
           Отмена
@@ -46,10 +46,23 @@ function cancel() {
 
     <button
       v-else
-      class="px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-600/30 rounded-full transition-colors cursor-pointer"
+      class="px-5 py-2.5 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm font-medium rounded-xl transition-colors cursor-pointer"
       @click="modal?.close().catch(() => {})"
     >
       Попробовать закрыть
     </button>
   </div>
 </template>
+
+<style scoped>
+.dialog {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 1rem;
+  padding: 28px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+</style>

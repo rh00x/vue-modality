@@ -9,22 +9,34 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{ close: [] }>()
 
-const colors: Record<string, string> = {
-  success: 'bg-green-800 border-green-600 text-green-100',
-  error: 'bg-red-800 border-red-600 text-red-100',
-  info: 'bg-gray-800 border-gray-600 text-gray-100',
-  warning: 'bg-yellow-800 border-yellow-600 text-yellow-100'
+const styles: Record<string, { border: string; text: string; icon: string }> = {
+  success: { border: 'border-emerald-200', text: 'text-emerald-600', icon: '✓' },
+  error: { border: 'border-red-200', text: 'text-red-600', icon: '✕' },
+  info: { border: 'border-indigo-200', text: 'text-indigo-600', icon: 'ℹ' },
+  warning: { border: 'border-amber-200', text: 'text-amber-600', icon: '⚠' }
 }
 
-const icons: Record<string, string> = {
-  success: '✓', error: '✕', info: 'ℹ', warning: '⚠'
-}
+const s = styles[props.type] || styles.info
 </script>
 
 <template>
-  <div :class="`flex items-center gap-3 px-4 py-3 rounded-full border shadow-lg min-w-[280px] ${colors[props.type]}`">
-    <span class="text-lg">{{ icons[props.type] }}</span>
-    <span class="flex-1 text-sm">{{ props.message }}</span>
-    <button class="opacity-60 hover:opacity-100 transition-opacity cursor-pointer" @click="emit('close')">×</button>
+  <div :class="`toast ${s.border}`">
+    <span :class="`text-base ${s.text}`">{{ s.icon }}</span>
+    <span class="flex-1 text-sm text-[#444]">{{ props.message }}</span>
+    <button class="text-[#bbb] hover:text-[#666] transition-colors cursor-pointer text-lg leading-none" @click="emit('close')">×</button>
   </div>
 </template>
+
+<style scoped>
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid;
+  min-width: 300px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+</style>

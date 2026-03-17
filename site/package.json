@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build && vite build --ssr src/main-ssr.ts --outDir dist-ssr && node --import tsx prerender.ts && rm -rf dist-ssr",
+    "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

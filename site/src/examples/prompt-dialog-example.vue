@@ -29,13 +29,13 @@ props.modal?.emit(MODAL_EVENT_PROMPT, 'Vue 3')`)
 </script>
 
 <template>
-  <div class="bg-white/4 border border-white/8 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col h-full">
-    <h3 class="text-white font-semibold text-lg mb-2">Prompt Dialog</h3>
-    <p class="text-gray-400 text-sm mb-4">await результата через <code class="text-indigo-300">promptDialog()</code></p>
+  <div class="border border-black/[0.06] rounded-xl p-4 sm:p-5 flex flex-col h-full hover:border-accent-border/60 transition-colors">
+    <h3 class="text-[#171717] font-semibold text-sm mb-2">Prompt Dialog</h3>
+    <p class="text-[#999] text-xs mb-4">await результата через <code class="text-[#999] font-mono">promptDialog()</code></p>
 
     <div class="flex items-center gap-4 mb-4">
       <button
-        class="px-4 py-2 bg-linear-to-r from-indigo-500 to-purple-600 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] text-white rounded-full font-medium transition-all cursor-pointer w-fit"
+        class="px-4 py-2 bg-accent border border-accent hover:bg-accent-hover text-white rounded-lg text-sm font-medium transition-all cursor-pointer w-fit shadow-[0_2px_8px_rgba(249,115,22,0.25)]"
         @click="runPrompt"
       >
         Задать вопрос
@@ -53,14 +53,15 @@ props.modal?.emit(MODAL_EVENT_PROMPT, 'Vue 3')`)
 .code-block {
   display: flex;
   flex-direction: column;
-  background: #0d1117;
-  border: 1px solid rgb(255 255 255 / 0.08);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.75rem;
 }
 .code-block :deep(pre) {
   flex: 1;
   padding: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
-  background: #0d1117 !important;
+  background: transparent !important;
 }
 </style>

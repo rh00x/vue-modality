@@ -8,9 +8,9 @@ const { dialogs } = useDialog()
   <Teleport to="body">
     <Transition name="dialog">
       <div v-if="dialogs.length > 0" class="fixed inset-0 z-50">
-        <!-- backdrop фейдится вместе с контейнером -->
-        <div class="absolute inset-0 bg-black/70" />
-        <!-- dialog cards -->
+        <!-- Backdrop -->
+        <div class="absolute inset-0 backdrop" />
+        <!-- Dialog cards -->
         <div
           v-for="(dialog, index) in dialogs"
           :key="dialog.id"
@@ -33,22 +33,31 @@ const { dialogs } = useDialog()
 </template>
 
 <style scoped>
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .dialog-enter-active,
 .dialog-leave-active {
-  transition: all 0.3s ease;
+  transition: opacity 0.25s ease;
 }
-.dialog-enter-active .dialog-card,
+.dialog-enter-active .dialog-card {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+}
 .dialog-leave-active .dialog-card {
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
+
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
 }
 .dialog-enter-from .dialog-card {
-  transform: translateY(40px);
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
 }
 .dialog-leave-to .dialog-card {
-  transform: translateY(40px);
+  opacity: 0;
+  transform: scale(0.97) translateY(10px);
 }
 </style>

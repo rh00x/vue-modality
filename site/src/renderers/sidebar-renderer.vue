@@ -13,11 +13,11 @@ const { sidebar, closeSidebar } = useSidebarPanel()
       >
         <!-- backdrop -->
         <div
-          class="absolute inset-0 bg-black/40"
+          class="absolute inset-0 bg-black/20 backdrop-blur-sm"
           @click="closeSidebar"
         />
         <!-- panel -->
-        <div class="relative z-10 h-full w-80 bg-gray-900/80 backdrop-blur-xl border-l border-white/8 shadow-2xl overflow-y-auto">
+        <div class="relative z-10 h-full w-80 bg-white border-l border-black/[0.08] shadow-2xl overflow-y-auto">
           <component
             :is="sidebar.component"
             v-bind="sidebar.props.value"

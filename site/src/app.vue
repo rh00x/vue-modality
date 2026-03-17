@@ -9,12 +9,7 @@ import ApiSection from "./sections/api-section.vue";
 </script>
 
 <template>
-  <!-- Background teleported to body for position:fixed on iOS Safari -->
-  <Teleport to="body">
-    <div aria-hidden="true" class="bg-gradient-overlay" />
-  </Teleport>
-
-  <div class="min-h-screen text-slate-100 font-sans relative">
+  <div class="min-h-screen font-sans">
     <main>
       <HeroSection />
       <FeaturesSection />
@@ -22,30 +17,13 @@ import ApiSection from "./sections/api-section.vue";
       <ApiSection />
     </main>
 
-    <footer
-      class="border-t border-white/6 py-8 text-center text-slate-500 text-sm"
-    >
+    <footer class="relative py-10 text-center text-[#999] text-sm">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
       <p>Vue-modality — MIT License — {{ new Date().getFullYear() }}</p>
     </footer>
 
-    <!-- Global renderers -->
     <DialogRenderer />
     <ToastRenderer />
     <SidebarRenderer />
   </div>
 </template>
-
-<style>
-.bg-gradient-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(99, 102, 241, 0.2) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 60%);
-}
-</style>

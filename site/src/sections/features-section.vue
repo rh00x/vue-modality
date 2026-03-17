@@ -1,120 +1,56 @@
 <script setup lang="ts">
 const features = [
   {
-    title: 'Namespace-очереди',
-    desc: 'Dialogs, toasts, sidebars — изолированные стеки. Каждый namespace управляется независимо, без конфликтов.',
-    accent: '#6366f1'
+    problem: 'Глобальный стейт для каждой модалки',
+    solution: 'Namespace-очереди',
+    desc: 'Каждый тип — dialogs, toasts, sidebars — в изолированном стеке. Без конфликтов, без shared state.',
   },
   {
-    title: 'Guard-система',
-    desc: 'Отклонение закрытия через sync/async guards. Идеально для подтверждения несохранённых изменений.',
-    accent: '#f43f5e'
+    problem: 'Пользователь закрыл форму случайно',
+    solution: 'Guard-система',
+    desc: 'Sync/async guards блокируют закрытие. Работает на backdrop, кнопке, программном вызове.',
   },
   {
-    title: 'Prompt-паттерн',
-    desc: 'await результата прямо из модального окна. Никакого shared state — просто Promise с типами.',
-    accent: '#a855f7'
+    problem: 'Callback hell для получения ответа',
+    solution: 'Prompt-паттерн',
+    desc: 'await promptDialog<T>() — и получаете типизированный результат. Как window.confirm, только лучше.',
   },
   {
-    title: 'Event bus',
-    desc: 'on/emit между модалкой и вызывающим кодом. Типизированные события без лишней связности.',
-    accent: '#22d3ee'
+    problem: 'Пропсы для каждого события',
+    solution: 'Event bus',
+    desc: 'Типизированный on/emit между модалкой и вызывающим кодом. Без лишней связности.',
   },
   {
-    title: 'Type-safe пропсы',
-    desc: 'ComponentProps<T> автоматически выводит типы пропсов компонента. Полная TypeScript поддержка.',
-    accent: '#fbbf24'
+    problem: 'Ручная типизация пропсов',
+    solution: 'ComponentProps<T>',
+    desc: 'Автовывод типов пропсов из компонента. Полная TypeScript поддержка из коробки.',
   },
   {
-    title: 'Zero dependencies',
-    desc: 'Только Vue как peer dependency. Никаких транзитивных зависимостей.',
-    accent: '#34d399'
+    problem: 'Лишние зависимости в бандле',
+    solution: 'Zero dependencies',
+    desc: 'Только Vue как peer dependency. ~3kb gzip. Никаких транзитивных зависимостей.',
   }
 ]
 </script>
 
 <template>
-  <section aria-label="Возможности" class="section">
-    <div class="glass-bg" />
-    <div class="container">
-      <p class="text-indigo-400 text-sm font-medium tracking-wide mb-3">Возможности</p>
-      <h2 class="text-2xl sm:text-4xl font-bold text-white mb-10 sm:mb-16" style="line-height:1.2">Всё для профессиональной<br>работы с модальными окнами</h2>
+  <section aria-label="Возможности" class="py-20 sm:py-28 px-4 border-t border-black/[0.06]">
+    <div class="max-w-[880px] mx-auto">
+      <p class="text-accent text-xs uppercase tracking-widest mb-3 font-medium">Возможности</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-[#171717] mb-14 tracking-[-0.03em] leading-tight">
+        Проблемы, которые<br>мы решили за вас
+      </h2>
 
-      <div class="grid">
-        <div
-          v-for="f in features"
-          :key="f.title"
-          class="item"
-        >
-          <div class="item-accent" :style="{ background: f.accent }" />
-          <h3 class="item-title">{{ f.title }}</h3>
-          <p class="item-desc">{{ f.desc }}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12">
+        <div v-for="f in features" :key="f.solution" class="group">
+          <p class="text-[#bbb] text-sm line-through mb-2">{{ f.problem }}</p>
+          <h3 class="text-[#171717] font-semibold text-lg mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+            {{ f.solution }}
+          </h3>
+          <p class="text-[#888] text-base leading-relaxed">{{ f.desc }}</p>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-.section {
-  padding: 6rem 1.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-bg {
-  position: absolute;
-  inset: 2rem;
-  border-radius: 2rem;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(99, 102, 241, 0.06), transparent 70%),
-    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(168, 85, 247, 0.05), transparent 70%),
-    rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  pointer-events: none;
-}
-
-.container {
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem 5rem;
-}
-
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; gap: 2.5rem; }
-}
-
-.item {
-  padding-left: 1rem;
-  position: relative;
-}
-
-.item-accent {
-  position: absolute;
-  left: 0;
-  top: 0.2rem;
-  width: 3px;
-  height: 1.2rem;
-  border-radius: 2px;
-}
-
-.item-title {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.item-desc {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.875rem;
-  line-height: 1.7;
-}
-</style>

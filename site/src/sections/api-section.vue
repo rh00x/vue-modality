@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { createHighlighterCore } from "shiki/core";
-import { createOnigurumaEngine } from "shiki/engine/oniguruma";
+import { getHighlighter } from "../use-highlight";
 
 interface ApiItem {
   name: string;
@@ -119,17 +118,13 @@ const apiGroups = ref<ApiGroup[]>([
 ]);
 
 onMounted(async () => {
-  const highlighter = await createHighlighterCore({
-    themes: [import("shiki/themes/github-dark-default.mjs")],
-    langs: [import("shiki/langs/typescript.mjs")],
-    engine: createOnigurumaEngine(import("shiki/wasm")),
-  });
+  const highlighter = await getHighlighter();
 
   for (const group of apiGroups.value) {
     for (const item of group.items) {
       item.highlightedSignature = highlighter.codeToHtml(item.signature, {
         lang: "typescript",
-        theme: "github-dark-default",
+        theme: "vitesse-light",
       });
     }
   }
@@ -137,11 +132,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section aria-label="API Reference" class="py-16 sm:py-24 px-4">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-indigo-400 text-sm font-medium tracking-wide mb-3">API</p>
+  <section aria-label="API Reference" class="py-20 sm:py-28 px-4 border-t border-black/[0.06]">
+    <div class="max-w-[880px] mx-auto">
+      <p class="text-accent text-xs uppercase tracking-widest mb-3 font-medium">API</p>
       <h2
-        class="text-2xl sm:text-4xl font-bold text-white mb-10 sm:mb-16"
+        class="font-display text-3xl sm:text-4xl font-bold text-[#171717] mb-14 tracking-tight"
         style="line-height: 1.2"
       >
         Список методов и типов
@@ -150,27 +145,25 @@ onMounted(async () => {
       <div class="space-y-12">
         <div v-for="group in apiGroups" :key="group.title">
           <div class="flex items-center gap-3 mb-6">
-            <span class="text-2xl">{{ group.icon }}</span>
-            <h3 class="text-xl font-semibold text-white">{{ group.title }}</h3>
-            <div
-              class="flex-1 h-px bg-linear-to-r from-white/8 to-transparent"
-            ></div>
+            <span class="text-lg">{{ group.icon }}</span>
+            <h3 class="text-base font-semibold text-[#171717]">{{ group.title }}</h3>
+            <div class="flex-1 h-px bg-black/[0.06]"></div>
           </div>
 
           <div class="grid gap-3">
             <div
               v-for="item in group.items"
               :key="item.name"
-              class="group bg-white/2 border border-white/6 rounded-xl px-3 sm:px-5 py-3 sm:py-4 hover:bg-white/5 hover:border-indigo-500/20 transition-all overflow-hidden"
+              class="border border-black/[0.06] rounded-lg px-3 sm:px-4 py-3 hover:border-accent-border hover:bg-accent-light/50 transition-all overflow-hidden"
             >
               <div
                 class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4"
               >
                 <code
-                  class="shrink-0 w-fit text-indigo-300 font-mono text-xs sm:text-sm font-medium bg-indigo-500/8 px-2 sm:px-2.5 py-1 rounded-lg"
+                  class="shrink-0 w-fit text-[#171717] font-mono text-xs font-medium bg-black/[0.04] px-2 py-1 rounded-md"
                   >{{ item.name }}</code
                 >
-                <p class="text-slate-400 text-sm leading-relaxed sm:pt-1">
+                <p class="text-[#888] text-xs leading-relaxed sm:pt-1">
                   {{ item.description }}
                 </p>
               </div>
@@ -199,8 +192,8 @@ onMounted(async () => {
 <style scoped>
 .api-signature,
 .api-signature-fallback {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
 }
@@ -208,7 +201,7 @@ onMounted(async () => {
 .api-signature :deep(pre) {
   margin: 0;
   padding: 0;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
   background: transparent !important;
 }

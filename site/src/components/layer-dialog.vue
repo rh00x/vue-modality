@@ -5,26 +5,24 @@ const props = defineProps<{
   onPop?: () => void
 }>()
 
-const colors = ['bg-indigo-900', 'bg-purple-900', 'bg-pink-900']
-const borders = ['border-indigo-600', 'border-purple-600', 'border-pink-600']
-const bg = colors[(props.level - 1) % colors.length]
-const border = borders[(props.level - 1) % borders.length]
+const accents = ['indigo', 'purple', 'pink']
+const accent = accents[(props.level - 1) % accents.length]
 </script>
 
 <template>
-  <div :class="`${bg} border ${border} rounded-xl shadow-2xl p-6 w-full max-w-sm mx-4`">
-    <h2 class="text-xl font-semibold text-white mb-2">Слой {{ level }}</h2>
-    <p class="text-gray-300 text-sm mb-4">Активных диалогов: {{ level }}</p>
+  <div class="dialog" :class="`accent-${accent}`">
+    <h2 class="font-display text-xl font-bold text-[#171717] mb-1 tracking-tight">Слой {{ level }}</h2>
+    <p class="text-[#999] text-sm mb-5">Активных диалогов: {{ level }}</p>
     <div class="flex gap-2">
       <button
         v-if="level < 3"
-        class="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-colors cursor-pointer"
+        class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-[#666] text-sm rounded-xl transition-colors cursor-pointer"
         @click="onPush?.()"
       >
-        Добавить слой {{ level + 1 }}
+        + Слой {{ level + 1 }}
       </button>
       <button
-        class="px-3 py-1.5 bg-red-600/30 hover:bg-red-600/50 text-red-300 rounded-full text-sm transition-colors cursor-pointer"
+        class="px-4 py-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm rounded-xl transition-colors cursor-pointer"
         @click="onPop?.()"
       >
         Pop
@@ -32,3 +30,20 @@ const border = borders[(props.level - 1) % borders.length]
     </div>
   </div>
 </template>
+
+<style scoped>
+.dialog {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 1rem;
+  padding: 24px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+.accent-indigo { border-color: rgba(99, 102, 241, 0.3); }
+.accent-purple { border-color: rgba(168, 85, 247, 0.3); }
+.accent-pink { border-color: rgba(236, 72, 153, 0.3); }
+</style>
