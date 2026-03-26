@@ -13,11 +13,11 @@ const { sidebar, closeSidebar } = useSidebarPanel()
       >
         <!-- backdrop -->
         <div
-          class="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          class="absolute inset-0 bg-black/60"
           @click="closeSidebar"
         />
         <!-- panel -->
-        <div class="relative z-10 h-full w-80 bg-white border-l border-black/[0.08] shadow-2xl overflow-y-auto">
+        <div class="relative z-10 h-full w-80 bg-[#111] border-l border-border overflow-y-auto">
           <component
             :is="sidebar.component"
             v-bind="sidebar.props.value"
@@ -33,11 +33,11 @@ const { sidebar, closeSidebar } = useSidebarPanel()
 <style scoped>
 .sidebar-enter-active,
 .sidebar-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 .sidebar-enter-active .relative,
 .sidebar-leave-active .relative {
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 .sidebar-enter-from,
 .sidebar-leave-to {

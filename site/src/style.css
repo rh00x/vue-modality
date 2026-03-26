@@ -6,11 +6,11 @@ html {
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Archivo Black', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
@@ -18,11 +18,14 @@ html {
   --text-4xl: 2.5rem;
   --text-5xl: 3.5rem;
   --text-6xl: 4.5rem;
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
-  --color-accent-light: #fff7ed;
-  --color-accent-border: #fed7aa;
-  --color-accent-muted: #fdba74;
+  --color-accent: #E61919;
+  --color-accent-hover: #FF2A2A;
+  --color-accent-light: rgba(230, 25, 25, 0.08);
+  --color-accent-border: rgba(230, 25, 25, 0.35);
+  --color-surface: #111111;
+  --color-surface-raised: #161616;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-muted: #666666;
 }
 
 @layer base {
@@ -33,9 +36,37 @@ html {
   }
 
   body {
-    background: linear-gradient(180deg, #fff7ed 0%, #fafafa 12%, #fafafa 88%, #fff7ed 100%);
-    background-color: #fafafa;
-    color: #171717;
+    background: #0A0A0A;
+    color: #EAEAEA;
+    position: relative;
+  }
+
+  /* CRT scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+  }
+
+  /* Noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
   }
 }
 
@@ -44,7 +75,42 @@ html {
     box-sizing: border-box;
   }
 
-  button, a, [class~="rounded-full"] {
-    corner-shape: squircle;
+  /* Принудительно убираем все скругления */
+  button, a, input, textarea, select, [class*="rounded"] {
+    border-radius: 0 !important;
+    corner-shape: initial;
+  }
+}
+
+/* Утилиты для бруталистского дизайна */
+@layer utilities {
+  .brutalist-border {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .brutalist-border-thick {
+    border: 2px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .brutalist-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    width: 100%;
+  }
+
+  .mono-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .macro-title {
+    font-family: 'Archivo Black', 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    color: #EAEAEA;
   }
 }

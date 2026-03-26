@@ -29,23 +29,26 @@ props.modal?.emit(MODAL_EVENT_PROMPT, 'Vue 3')`)
 </script>
 
 <template>
-  <div class="border border-black/[0.06] rounded-xl p-4 sm:p-5 flex flex-col h-full hover:border-accent-border/60 transition-colors">
-    <h3 class="text-[#171717] font-semibold text-sm mb-2">Prompt Dialog</h3>
-    <p class="text-[#999] text-xs mb-4">await результата через <code class="text-[#999] font-mono">promptDialog()</code></p>
+  <div class="p-5 flex flex-col h-full bg-surface">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-white font-mono font-bold text-xs uppercase tracking-wider">Prompt Dialog</h3>
+      <span class="mono-label text-accent">EX-02</span>
+    </div>
+    <p class="text-[#666] text-xs font-mono mb-4 uppercase">await результата через <code class="text-[#888]">promptDialog()</code></p>
 
     <div class="flex items-center gap-4 mb-4">
       <button
-        class="px-4 py-2 bg-accent border border-accent hover:bg-accent-hover text-white rounded-lg text-sm font-medium transition-all cursor-pointer w-fit shadow-[0_2px_8px_rgba(249,115,22,0.25)]"
+        class="px-4 py-2 bg-accent border border-accent hover:bg-accent-hover text-white text-xs font-mono uppercase tracking-wider transition-all cursor-pointer w-fit"
         @click="runPrompt"
       >
-        Задать вопрос
+        [ ЗАДАТЬ ВОПРОС ]
       </button>
-      <span v-if="result !== null" class="text-sm">
-        Ответ: <span class="text-green-400 font-medium">{{ result }}</span>
+      <span v-if="result !== null" class="text-xs font-mono text-[#666]">
+        RESULT: <span class="text-accent font-medium">{{ result }}</span>
       </span>
     </div>
 
-    <div class="code-block rounded-xl overflow-x-auto flex-1" v-html="codeHtml" />
+    <div class="code-block overflow-x-auto flex-1" v-html="codeHtml" />
   </div>
 </template>
 
@@ -53,9 +56,8 @@ props.modal?.emit(MODAL_EVENT_PROMPT, 'Vue 3')`)
 .code-block {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0.75rem;
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .code-block :deep(pre) {
   flex: 1;

@@ -17,9 +17,15 @@ import ApiSection from "./sections/api-section.vue";
       <ApiSection />
     </main>
 
-    <footer class="relative py-10 text-center text-[#999] text-sm">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
-      <p>Vue-modality — MIT License — {{ new Date().getFullYear() }}</p>
+    <footer class="relative py-8 border-t border-border">
+      <div class="max-w-[880px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-mono text-xs text-[#666] uppercase tracking-wider">
+          VUE-MODALITY /// MIT LICENSE /// {{ new Date().getFullYear() }}
+        </p>
+        <p class="font-mono text-xs text-[#444]">
+          + END TRANSMISSION
+        </p>
+      </div>
     </footer>
 
     <DialogRenderer />

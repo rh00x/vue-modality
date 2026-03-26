@@ -10,15 +10,15 @@ interface ApiItem {
 }
 
 interface ApiGroup {
-  icon: string;
+  id: string;
   title: string;
   items: ApiItem[];
 }
 
 const apiGroups = ref<ApiGroup[]>([
   {
-    icon: "⚡",
-    title: "Методы ядра",
+    id: "CORE",
+    title: "МЕТОДЫ ЯДРА",
     items: [
       {
         name: "openModal",
@@ -63,8 +63,8 @@ const apiGroups = ref<ApiGroup[]>([
     ],
   },
   {
-    icon: "🪝",
-    title: "Хуки",
+    id: "HOOKS",
+    title: "ХУКИ",
     items: [
       {
         name: "useDialog()",
@@ -84,8 +84,8 @@ const apiGroups = ref<ApiGroup[]>([
     ],
   },
   {
-    icon: "🔷",
-    title: "Типы",
+    id: "TYPES",
+    title: "ТИПЫ",
     items: [
       {
         name: "ModalRecord",
@@ -124,7 +124,7 @@ onMounted(async () => {
     for (const item of group.items) {
       item.highlightedSignature = highlighter.codeToHtml(item.signature, {
         lang: "typescript",
-        theme: "vitesse-light",
+        theme: "github-dark",
       });
     }
   }
@@ -132,53 +132,43 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section aria-label="API Reference" class="py-20 sm:py-28 px-4 border-t border-black/[0.06]">
+  <section aria-label="API Reference" class="py-20 sm:py-28 px-4 border-t border-border">
     <div class="max-w-[880px] mx-auto">
-      <p class="text-accent text-xs uppercase tracking-widest mb-3 font-medium">API</p>
-      <h2
-        class="font-display text-3xl sm:text-4xl font-bold text-[#171717] mb-14 tracking-tight"
-        style="line-height: 1.2"
-      >
-        Список методов и типов
+      <div class="mono-label mb-4 flex items-center gap-3">
+        <span class="text-accent">///</span>
+        <span>API</span>
+      </div>
+      <h2 class="macro-title text-[clamp(2rem,6vw,3.5rem)] mb-14">
+        МЕТОДЫ И ТИПЫ
       </h2>
 
-      <div class="space-y-12">
+      <div class="space-y-10">
         <div v-for="group in apiGroups" :key="group.title">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="text-lg">{{ group.icon }}</span>
-            <h3 class="text-base font-semibold text-[#171717]">{{ group.title }}</h3>
-            <div class="flex-1 h-px bg-black/[0.06]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-accent font-mono text-xs font-bold">[ {{ group.id }} ]</span>
+            <h3 class="text-xs font-mono font-bold text-white tracking-wider">{{ group.title }}</h3>
+            <div class="flex-1 h-px bg-border"></div>
           </div>
 
-          <div class="grid gap-3">
+          <div class="border border-border">
             <div
-              v-for="item in group.items"
+              v-for="(item, i) in group.items"
               :key="item.name"
-              class="border border-black/[0.06] rounded-lg px-3 sm:px-4 py-3 hover:border-accent-border hover:bg-accent-light/50 transition-all overflow-hidden"
+              class="px-4 py-3 hover:bg-white/[0.02] transition-colors"
+              :class="{ 'border-t border-border': i > 0 }"
             >
-              <div
-                class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4"
-              >
-                <code
-                  class="shrink-0 w-fit text-[#171717] font-mono text-xs font-medium bg-black/[0.04] px-2 py-1 rounded-md"
-                  >{{ item.name }}</code
-                >
-                <p class="text-[#888] text-xs leading-relaxed sm:pt-1">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <code class="shrink-0 w-fit text-white font-mono text-xs font-bold bg-white/[0.04] px-2 py-0.5">{{ item.name }}</code>
+                <p class="text-[#666] text-xs leading-relaxed sm:pt-0.5 font-mono">
                   {{ item.description }}
                 </p>
               </div>
-              <div class="mt-3 api-signature" v-if="item.highlightedSignature">
-                <div
-                  class="overflow-x-auto"
-                  v-html="item.highlightedSignature"
-                ></div>
+              <div class="mt-2 api-signature" v-if="item.highlightedSignature">
+                <div class="overflow-x-auto" v-html="item.highlightedSignature"></div>
               </div>
-              <div class="mt-3 api-signature-fallback" v-else>
+              <div class="mt-2 api-signature" v-else>
                 <div class="overflow-x-auto">
-                  <code
-                    class="text-xs font-mono text-slate-500 whitespace-nowrap"
-                    >{{ item.signature }}</code
-                  >
+                  <code class="text-xs font-mono text-[#666] whitespace-nowrap">{{ item.signature }}</code>
                 </div>
               </div>
             </div>
@@ -190,12 +180,10 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.api-signature,
-.api-signature-fallback {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
+.api-signature {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.375rem 0.625rem;
 }
 
 .api-signature :deep(pre) {

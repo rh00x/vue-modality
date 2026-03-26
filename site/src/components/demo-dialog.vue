@@ -12,22 +12,28 @@ const emit = defineEmits<{ close: [] }>()
 
 <template>
   <div class="dialog">
-    <h2 class="font-display text-2xl font-bold text-[#171717] mb-3 tracking-tight">{{ title }}</h2>
-    <p class="text-[#666] text-sm leading-relaxed mb-2">{{ message }}</p>
-    <p class="text-[#999] text-xs leading-relaxed mb-6">
-      Каждый вызов <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">openDialog()</code> возвращает
-      <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">ModalRecord</code> с методами
-      <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">close()</code>,
-      <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">on()</code> и
-      <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">addCloseGuard()</code>.
-    </p>
-    <div class="flex justify-end">
-      <button
-        class="px-5 py-2.5 bg-[#171717] hover:bg-[#333] text-white text-sm font-medium rounded-xl transition-colors cursor-pointer"
-        @click="emit('close')"
-      >
-        Понятно
-      </button>
+    <div class="dialog-header">
+      <span class="font-mono text-xs text-accent tracking-wider">/// DIALOG</span>
+      <span class="font-mono text-xs text-[#555]">UNIT / D-01</span>
+    </div>
+    <div class="dialog-body">
+      <h2 class="font-display text-xl font-bold text-[#EAEAEA] mb-3 uppercase tracking-tight">{{ title }}</h2>
+      <p class="text-[#888] text-sm leading-relaxed mb-2 font-mono">{{ message }}</p>
+      <p class="text-[#555] text-xs leading-relaxed mb-6 font-mono">
+        Каждый вызов <code class="text-[#EAEAEA] bg-white/[0.06] px-1">openDialog()</code> возвращает
+        <code class="text-[#EAEAEA] bg-white/[0.06] px-1">ModalRecord</code> с методами
+        <code class="text-[#EAEAEA] bg-white/[0.06] px-1">close()</code>,
+        <code class="text-[#EAEAEA] bg-white/[0.06] px-1">on()</code> и
+        <code class="text-[#EAEAEA] bg-white/[0.06] px-1">addCloseGuard()</code>.
+      </p>
+      <div class="flex justify-end">
+        <button
+          class="px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+          @click="emit('close')"
+        >
+          [ ПОНЯТНО ]
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -37,10 +43,20 @@ const emit = defineEmits<{ close: [] }>()
   width: 100%;
   max-width: 420px;
   margin: 0 1rem;
-  padding: 28px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0E0E0E;
+}
+
+.dialog-body {
+  padding: 24px 20px;
 }
 </style>

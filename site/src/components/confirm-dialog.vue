@@ -10,26 +10,31 @@ function select(value: string) {
 
 <template>
   <div class="dialog">
-    <h2 class="font-display text-2xl font-bold text-[#171717] mb-3 tracking-tight">Ваш выбор</h2>
-    <p class="text-[#666] text-sm leading-relaxed mb-2">Какой фреймворк вы предпочитаете?</p>
-    <p class="text-[#999] text-xs leading-relaxed mb-6">
-      Результат вернётся как <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">Promise&lt;T&gt;</code>.
-      Компонент отправляет ответ через <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">emit(MODAL_EVENT_PROMPT, value)</code>.
-      Закрытие без выбора → <code class="text-[#171717] font-mono bg-black/[0.04] px-1 rounded">null</code>.
-    </p>
-    <div class="flex gap-3">
-      <button
-        class="flex-1 py-3 border border-black/[0.08] hover:bg-black/[0.03] text-emerald-600 text-sm font-medium rounded-xl transition-colors cursor-pointer"
-        @click="select('Vue 3')"
-      >
-        Vue 3
-      </button>
-      <button
-        class="flex-1 py-3 border border-black/[0.08] hover:bg-black/[0.03] text-blue-600 text-sm font-medium rounded-xl transition-colors cursor-pointer"
-        @click="select('React')"
-      >
-        React
-      </button>
+    <div class="dialog-header">
+      <span class="font-mono text-xs text-accent tracking-wider">/// PROMPT</span>
+      <span class="font-mono text-xs text-[#555]">AWAITING INPUT</span>
+    </div>
+    <div class="dialog-body">
+      <h2 class="font-display text-xl font-bold text-[#EAEAEA] mb-3 uppercase tracking-tight">Ваш выбор</h2>
+      <p class="text-[#888] text-sm leading-relaxed mb-2 font-mono">Какой фреймворк вы предпочитаете?</p>
+      <p class="text-[#555] text-xs leading-relaxed mb-6 font-mono">
+        Результат вернётся как <code class="text-[#EAEAEA] bg-white/[0.06] px-1">Promise&lt;T&gt;</code>.
+        Закрытие без выбора >>> <code class="text-[#EAEAEA] bg-white/[0.06] px-1">null</code>.
+      </p>
+      <div class="flex gap-2">
+        <button
+          class="flex-1 py-3 border border-border hover:bg-white/[0.04] text-[#4AF626] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+          @click="select('Vue 3')"
+        >
+          [ VUE 3 ]
+        </button>
+        <button
+          class="flex-1 py-3 border border-border hover:bg-white/[0.04] text-[#58a6ff] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+          @click="select('React')"
+        >
+          [ REACT ]
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -39,10 +44,20 @@ function select(value: string) {
   width: 100%;
   max-width: 400px;
   margin: 0 1rem;
-  padding: 28px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0E0E0E;
+}
+
+.dialog-body {
+  padding: 24px 20px;
 }
 </style>

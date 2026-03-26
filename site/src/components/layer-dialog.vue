@@ -4,29 +4,32 @@ const props = defineProps<{
   onPush?: () => void
   onPop?: () => void
 }>()
-
-const accents = ['indigo', 'purple', 'pink']
-const accent = accents[(props.level - 1) % accents.length]
 </script>
 
 <template>
-  <div class="dialog" :class="`accent-${accent}`">
-    <h2 class="font-display text-xl font-bold text-[#171717] mb-1 tracking-tight">Слой {{ level }}</h2>
-    <p class="text-[#999] text-sm mb-5">Активных диалогов: {{ level }}</p>
-    <div class="flex gap-2">
-      <button
-        v-if="level < 3"
-        class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-[#666] text-sm rounded-xl transition-colors cursor-pointer"
-        @click="onPush?.()"
-      >
-        + Слой {{ level + 1 }}
-      </button>
-      <button
-        class="px-4 py-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm rounded-xl transition-colors cursor-pointer"
-        @click="onPop?.()"
-      >
-        Pop
-      </button>
+  <div class="dialog">
+    <div class="dialog-header">
+      <span class="font-mono text-xs text-accent tracking-wider">/// LAYER {{ level }}</span>
+      <span class="font-mono text-xs text-[#555]">STACK: {{ level }}/3</span>
+    </div>
+    <div class="dialog-body">
+      <h2 class="font-mono text-lg font-bold text-[#EAEAEA] mb-1 uppercase tracking-tight">Слой {{ level }}</h2>
+      <p class="text-[#666] text-xs font-mono mb-5 uppercase">Активных диалогов: {{ level }}</p>
+      <div class="flex gap-2">
+        <button
+          v-if="level < 3"
+          class="px-4 py-2 border border-border hover:bg-white/[0.04] text-[#888] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+          @click="onPush?.()"
+        >
+          [ + СЛОЙ {{ level + 1 }} ]
+        </button>
+        <button
+          class="px-4 py-2 border border-accent/40 hover:bg-accent/[0.08] text-accent text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+          @click="onPop?.()"
+        >
+          [ POP ]
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -36,14 +39,20 @@ const accent = accents[(props.level - 1) % accents.length]
   width: 100%;
   max-width: 340px;
   margin: 0 1rem;
-  padding: 24px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.accent-indigo { border-color: rgba(99, 102, 241, 0.3); }
-.accent-purple { border-color: rgba(168, 85, 247, 0.3); }
-.accent-pink { border-color: rgba(236, 72, 153, 0.3); }
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0E0E0E;
+}
+
+.dialog-body {
+  padding: 20px 16px;
+}
 </style>

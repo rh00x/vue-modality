@@ -45,112 +45,120 @@ openToast(MyToast, { message: 'Готово!' })`)
     aria-label="Главная"
     class="relative min-h-screen flex flex-col justify-center px-4 pt-20 pb-16 overflow-hidden"
   >
-    <!-- Декоративный градиент -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-[radial-gradient(ellipse,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
-    <div class="max-w-[680px] mx-auto w-full text-center">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-border bg-accent-light text-accent text-xs tracking-wide font-medium mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-        Vue 3 · TypeScript · Zero dependencies
+    <!-- Перекрестие в углу -->
+    <div class="absolute top-8 left-8 text-muted font-mono text-xs tracking-widest select-none hidden sm:block">
+      + SYS.INIT<br>
+      REV 3.0 /// VUE-MODALITY
+    </div>
+    <div class="absolute top-8 right-8 text-muted font-mono text-xs tracking-widest text-right select-none hidden sm:block">
+      UNIT / MOD-01<br>
+      STATUS: <span class="text-accent">ACTIVE</span>
+    </div>
+
+    <div class="max-w-[780px] mx-auto w-full relative z-10">
+      <!-- Лейбл -->
+      <div class="mono-label mb-6 flex items-center gap-3">
+        <span class="text-accent">///</span>
+        <span>VUE 3 · TYPESCRIPT · ZERO DEPENDENCIES</span>
       </div>
 
-      <!-- Title -->
-      <h1 class="font-display font-bold tracking-[-0.02em] leading-[1.1] text-[2.5rem] sm:text-5xl lg:text-6xl text-[#171717] mb-5">
-        Модальные окна,<br>которые просто работают
+      <!-- Заголовок -->
+      <h1 class="macro-title text-[clamp(3rem,10vw,7rem)] mb-6">
+        МОДАЛЬНЫЕ<br>ОКНА
       </h1>
 
-      <!-- Subtitle -->
-      <p class="text-base sm:text-lg text-[#777] max-w-lg mx-auto mb-10 leading-relaxed">
-        Никакого навязанного UI — только ваши компоненты. Очереди, гарды и промисы библиотека берёт на себя.
-      </p>
+      <!-- Подзаголовок -->
+      <div class="border-l-2 border-accent pl-4 mb-10">
+        <p class="text-base text-[#999] leading-relaxed max-w-lg font-mono text-sm">
+          Никакого навязанного UI — только ваши компоненты.<br>
+          Очереди, гарды и промисы библиотека берёт на себя.
+        </p>
+      </div>
 
-      <!-- Metrics -->
-      <div class="flex justify-center gap-8 mb-10 text-sm">
-        <div class="text-center">
-          <div class="text-accent font-bold text-lg">~3kb</div>
-          <div class="text-[#999] text-xs mt-0.5">gzip</div>
+      <!-- Метрики -->
+      <div class="flex gap-0 mb-10 brutalist-border w-fit">
+        <div class="px-6 py-3 text-center border-r border-border">
+          <div class="font-display text-2xl text-white font-bold tracking-tight">~3KB</div>
+          <div class="mono-label mt-1">GZIP</div>
         </div>
-        <div class="w-px bg-accent-border" />
-        <div class="text-center">
-          <div class="text-accent font-bold text-lg">0</div>
-          <div class="text-[#999] text-xs mt-0.5">зависимостей</div>
+        <div class="px-6 py-3 text-center border-r border-border">
+          <div class="font-display text-2xl text-white font-bold tracking-tight">0</div>
+          <div class="mono-label mt-1">DEPS</div>
         </div>
-        <div class="w-px bg-accent-border" />
-        <div class="text-center">
-          <div class="text-accent font-bold text-lg">100%</div>
-          <div class="text-[#999] text-xs mt-0.5">TypeScript</div>
+        <div class="px-6 py-3 text-center">
+          <div class="font-display text-2xl text-white font-bold tracking-tight">100%</div>
+          <div class="mono-label mt-1">TS</div>
         </div>
       </div>
 
       <!-- CTA -->
-      <div class="flex flex-wrap justify-center gap-3 mb-16">
+      <div class="flex flex-wrap gap-3 mb-16">
         <a
           href="#examples"
-          class="inline-flex items-center px-6 h-10 bg-accent text-white hover:bg-accent-hover rounded-full text-sm font-medium transition-colors shadow-[0_2px_12px_rgba(249,115,22,0.3)]"
+          class="inline-flex items-center px-6 h-11 bg-accent text-white text-sm font-mono uppercase tracking-wider hover:bg-accent-hover transition-colors"
         >
-          Начать
+          [ НАЧАТЬ ]
         </a>
         <a
           href="https://github.com/rh00x/vue-modality"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 px-6 h-10 border border-black/[0.1] text-[#666] hover:text-[#171717] rounded-full text-sm font-medium transition-colors"
+          class="inline-flex items-center gap-2 px-6 h-11 border border-border text-[#999] hover:text-white hover:border-[#555] text-sm font-mono uppercase tracking-wider transition-colors"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
           </svg>
-          GitHub
+          GITHUB
         </a>
       </div>
 
-      <!-- Code + Live demo block -->
+      <!-- Code block -->
       <div class="code-demo-block text-left">
         <div class="code-header">
-          <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-accent/30" />
-            <span class="w-2.5 h-2.5 rounded-full bg-accent/20" />
-            <span class="w-2.5 h-2.5 rounded-full bg-accent/10" />
-          </div>
-          <span class="text-[#bbb] text-xs font-mono">example.ts</span>
+          <span class="mono-label">/// EXAMPLE.TS</span>
+          <span class="text-accent text-xs font-mono">LIVE</span>
         </div>
         <div class="code-body" v-html="codeHtml" />
         <div class="code-footer">
-          <span class="text-accent text-xs font-medium">Попробуйте →</span>
-          <div class="flex gap-2">
+          <span class="mono-label shrink-0">EXECUTE &gt;&gt;&gt;</span>
+          <div class="flex flex-wrap gap-2">
             <button class="demo-chip" @click="demoDialog">
-              openDialog()
+              [ openDialog() ]
             </button>
             <button class="demo-chip" @click="demoPrompt">
-              promptDialog()
+              [ promptDialog() ]
             </button>
             <button class="demo-chip" @click="demoToast">
-              openToast()
+              [ openToast() ]
             </button>
           </div>
         </div>
-        <div v-if="promptResult !== null" class="px-4 py-2 border-t border-black/[0.06] text-xs">
-          <span class="text-[#999]">Результат:</span>
-          <span class="text-emerald-600 ml-2 font-mono">{{ promptResult }}</span>
+        <div v-if="promptResult !== null" class="px-4 py-2 border-t border-border text-xs font-mono">
+          <span class="text-muted">RESULT:</span>
+          <span class="text-accent ml-2">{{ promptResult }}</span>
         </div>
       </div>
     </div>
+
+    <!-- Нижняя линия -->
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-border" />
   </section>
 </template>
 
 <style scoped>
 .code-demo-block {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
-  background: #fff;
+  background: #111111;
 }
 
 .code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0E0E0E;
 }
 
 .code-body {
@@ -160,7 +168,7 @@ openToast(MyToast, { message: 'Готово!' })`)
 .code-body :deep(pre) {
   margin: 0;
   padding: 20px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
   background: transparent !important;
   overflow-x: auto;
@@ -173,27 +181,28 @@ openToast(MyToast, { message: 'Готово!' })`)
 .code-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px 16px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 8px 12px;
 }
 
 .demo-chip {
   padding: 5px 12px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #666;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #999;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .demo-chip:hover {
-  background: var(--color-accent-light);
+  background: rgba(230, 25, 25, 0.1);
   color: var(--color-accent);
-  border-color: var(--color-accent-border);
+  border-color: rgba(230, 25, 25, 0.4);
 }
 </style>

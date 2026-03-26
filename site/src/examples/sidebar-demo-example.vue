@@ -20,18 +20,21 @@ sidebar.on('close', () => sidebar.close())`)
 </script>
 
 <template>
-  <div class="border border-black/[0.06] rounded-xl p-4 sm:p-5 flex flex-col h-full hover:border-accent-border/60 transition-colors">
-    <h3 class="text-[#171717] font-semibold text-sm mb-2">Sidebar</h3>
-    <p class="text-[#999] text-xs mb-4">Slide-in панель через <code class="text-[#999] font-mono">useSidebarPanel()</code></p>
+  <div class="p-5 flex flex-col h-full bg-surface">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-white font-mono font-bold text-xs uppercase tracking-wider">Sidebar</h3>
+      <span class="mono-label text-accent">EX-05</span>
+    </div>
+    <p class="text-[#666] text-xs font-mono mb-4 uppercase">Slide-in панель через <code class="text-[#888]">useSidebarPanel()</code></p>
 
     <button
-      class="px-4 py-2 bg-accent border border-accent hover:bg-accent-hover text-white rounded-lg text-sm font-medium transition-all mb-4 cursor-pointer w-fit shadow-[0_2px_8px_rgba(249,115,22,0.25)]"
+      class="px-4 py-2 bg-accent border border-accent hover:bg-accent-hover text-white text-xs font-mono uppercase tracking-wider transition-all mb-4 cursor-pointer w-fit"
       @click="open"
     >
-      Открыть панель
+      [ ОТКРЫТЬ ПАНЕЛЬ ]
     </button>
 
-    <div class="code-block rounded-xl overflow-x-auto flex-1" v-html="codeHtml" />
+    <div class="code-block overflow-x-auto flex-1" v-html="codeHtml" />
   </div>
 </template>
 
@@ -39,9 +42,8 @@ sidebar.on('close', () => sidebar.close())`)
 .code-block {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0.75rem;
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .code-block :deep(pre) {
   flex: 1;

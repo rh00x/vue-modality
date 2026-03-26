@@ -10,10 +10,10 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{ close: [] }>()
 
 const styles: Record<string, { border: string; text: string; icon: string }> = {
-  success: { border: 'border-emerald-200', text: 'text-emerald-600', icon: '✓' },
-  error: { border: 'border-red-200', text: 'text-red-600', icon: '✕' },
-  info: { border: 'border-indigo-200', text: 'text-indigo-600', icon: 'ℹ' },
-  warning: { border: 'border-amber-200', text: 'text-amber-600', icon: '⚠' }
+  success: { border: 'border-[#4AF626]/30', text: 'text-[#4AF626]', icon: '>>>' },
+  error: { border: 'border-accent/30', text: 'text-accent', icon: '!!! ' },
+  info: { border: 'border-[#EAEAEA]/20', text: 'text-[#EAEAEA]', icon: '---' },
+  warning: { border: 'border-[#d29922]/30', text: 'text-[#d29922]', icon: '///' }
 }
 
 const s = styles[props.type] || styles.info
@@ -21,9 +21,9 @@ const s = styles[props.type] || styles.info
 
 <template>
   <div :class="`toast ${s.border}`">
-    <span :class="`text-base ${s.text}`">{{ s.icon }}</span>
-    <span class="flex-1 text-sm text-[#444]">{{ props.message }}</span>
-    <button class="text-[#bbb] hover:text-[#666] transition-colors cursor-pointer text-lg leading-none" @click="emit('close')">×</button>
+    <span :class="`font-mono text-xs font-bold ${s.text}`">{{ s.icon }}</span>
+    <span class="flex-1 text-xs text-[#EAEAEA] font-mono">{{ props.message }}</span>
+    <button class="text-[#555] hover:text-[#EAEAEA] transition-colors cursor-pointer text-sm leading-none font-mono" @click="emit('close')">[X]</button>
   </div>
 </template>
 
@@ -31,12 +31,10 @@ const s = styles[props.type] || styles.info
 .toast {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 14px;
+  gap: 10px;
+  padding: 12px 16px;
   border: 1px solid;
   min-width: 300px;
-  background: #fff;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  background: #111;
 }
 </style>

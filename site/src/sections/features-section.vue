@@ -1,54 +1,70 @@
 <script setup lang="ts">
 const features = [
   {
+    id: 'F-01',
     problem: 'Глобальный стейт для каждой модалки',
-    solution: 'Namespace-очереди',
+    solution: 'NAMESPACE-ОЧЕРЕДИ',
     desc: 'Каждый тип — dialogs, toasts, sidebars — в изолированном стеке. Без конфликтов, без shared state.',
   },
   {
+    id: 'F-02',
     problem: 'Пользователь закрыл форму случайно',
-    solution: 'Guard-система',
+    solution: 'GUARD-СИСТЕМА',
     desc: 'Sync/async guards блокируют закрытие. Работает на backdrop, кнопке, программном вызове.',
   },
   {
+    id: 'F-03',
     problem: 'Callback hell для получения ответа',
-    solution: 'Prompt-паттерн',
+    solution: 'PROMPT-ПАТТЕРН',
     desc: 'await promptDialog<T>() — и получаете типизированный результат. Как window.confirm, только лучше.',
   },
   {
+    id: 'F-04',
     problem: 'Пропсы для каждого события',
-    solution: 'Event bus',
+    solution: 'EVENT BUS',
     desc: 'Типизированный on/emit между модалкой и вызывающим кодом. Без лишней связности.',
   },
   {
+    id: 'F-05',
     problem: 'Ручная типизация пропсов',
-    solution: 'ComponentProps<T>',
+    solution: 'COMPONENTPROPS<T>',
     desc: 'Автовывод типов пропсов из компонента. Полная TypeScript поддержка из коробки.',
   },
   {
+    id: 'F-06',
     problem: 'Лишние зависимости в бандле',
-    solution: 'Zero dependencies',
+    solution: 'ZERO DEPENDENCIES',
     desc: 'Только Vue как peer dependency. ~3kb gzip. Никаких транзитивных зависимостей.',
   }
 ]
 </script>
 
 <template>
-  <section aria-label="Возможности" class="py-20 sm:py-28 px-4 border-t border-black/[0.06]">
+  <section aria-label="Возможности" class="py-20 sm:py-28 px-4 border-t border-border">
     <div class="max-w-[880px] mx-auto">
-      <p class="text-accent text-xs uppercase tracking-widest mb-3 font-medium">Возможности</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-[#171717] mb-14 tracking-[-0.03em] leading-tight">
-        Проблемы, которые<br>мы решили за вас
+      <div class="mono-label mb-4 flex items-center gap-3">
+        <span class="text-accent">///</span>
+        <span>ВОЗМОЖНОСТИ</span>
+      </div>
+      <h2 class="macro-title text-[clamp(2rem,6vw,3.5rem)] mb-14">
+        ПРОБЛЕМЫ,<br>КОТОРЫЕ РЕШЕНЫ
       </h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12">
-        <div v-for="f in features" :key="f.solution" class="group">
-          <p class="text-[#bbb] text-sm line-through mb-2">{{ f.problem }}</p>
-          <h3 class="text-[#171717] font-semibold text-lg mb-2 flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 border border-border">
+        <div
+          v-for="(f, i) in features"
+          :key="f.solution"
+          class="p-5 sm:p-6 border-b border-border"
+          :class="{ 'sm:border-r': i % 2 === 0 }"
+        >
+          <div class="flex items-center gap-2 mb-3">
+            <span class="mono-label text-accent">{{ f.id }}</span>
+          </div>
+          <p class="text-muted text-xs font-mono line-through mb-2 uppercase tracking-wide">{{ f.problem }}</p>
+          <h3 class="text-white font-mono font-bold text-sm mb-2 tracking-wide">
             {{ f.solution }}
           </h3>
-          <p class="text-[#888] text-base leading-relaxed">{{ f.desc }}</p>
+          <p class="text-[#888] text-sm leading-relaxed">{{ f.desc }}</p>
         </div>
       </div>
     </div>

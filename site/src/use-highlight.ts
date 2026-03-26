@@ -7,7 +7,7 @@ let highlighterPromise: Promise<HighlighterCore> | null = null
 function getHighlighter(): Promise<HighlighterCore> {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighterCore({
-      themes: [import('shiki/themes/vitesse-light.mjs')],
+      themes: [import('shiki/themes/github-dark.mjs')],
       langs: [import('shiki/langs/typescript.mjs')],
       engine: createJavaScriptRegexEngine()
     })
@@ -25,7 +25,7 @@ export function useHighlight(code: Ref<string> | string) {
     const hl = await getHighlighter()
     html.value = hl.codeToHtml(source, {
       lang: 'typescript',
-      theme: 'vitesse-light'
+      theme: 'github-dark'
     })
   })
 

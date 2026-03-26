@@ -19,18 +19,21 @@ openToast(MyToast, { message: 'Done!', type: 'success' })
 </script>
 
 <template>
-  <div class="border border-black/[0.06] rounded-xl p-4 sm:p-5 flex flex-col h-full hover:border-accent-border/60 transition-colors">
-    <h3 class="text-[#171717] font-semibold text-sm mb-2">Toast</h3>
-    <p class="text-[#999] text-xs mb-4">Auto-close через 5 сек, несколько независимых тостов</p>
+  <div class="p-5 flex flex-col h-full bg-surface">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-white font-mono font-bold text-xs uppercase tracking-wider">Toast</h3>
+      <span class="mono-label text-accent">EX-04</span>
+    </div>
+    <p class="text-[#666] text-xs font-mono mb-4 uppercase">Auto-close через 5 сек, несколько независимых тостов</p>
 
     <div class="flex flex-wrap gap-2 mb-4 items-center">
-      <button class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-emerald-600 rounded-lg text-sm font-medium transition-all cursor-pointer" @click="showToast('success', 'Операция выполнена успешно!')">Success</button>
-      <button class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-red-600 rounded-lg text-sm font-medium transition-all cursor-pointer" @click="showToast('error', 'Произошла ошибка!')">Error</button>
-      <button class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-blue-600 rounded-lg text-sm font-medium transition-all cursor-pointer" @click="showToast('info', 'Информация для пользователя')">Info</button>
-      <button class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-amber-600 rounded-lg text-sm font-medium transition-all cursor-pointer" @click="showToast('warning', 'Внимание: проверьте данные')">Warning</button>
+      <button class="px-3 py-2 border border-border hover:bg-white/[0.03] text-[#4AF626] text-xs font-mono uppercase tracking-wider transition-all cursor-pointer" @click="showToast('success', 'Операция выполнена успешно!')">[ SUCCESS ]</button>
+      <button class="px-3 py-2 border border-border hover:bg-white/[0.03] text-accent text-xs font-mono uppercase tracking-wider transition-all cursor-pointer" @click="showToast('error', 'Произошла ошибка!')">[ ERROR ]</button>
+      <button class="px-3 py-2 border border-border hover:bg-white/[0.03] text-[#EAEAEA] text-xs font-mono uppercase tracking-wider transition-all cursor-pointer" @click="showToast('info', 'Информация для пользователя')">[ INFO ]</button>
+      <button class="px-3 py-2 border border-border hover:bg-white/[0.03] text-[#d29922] text-xs font-mono uppercase tracking-wider transition-all cursor-pointer" @click="showToast('warning', 'Внимание: проверьте данные')">[ WARNING ]</button>
     </div>
 
-    <div class="code-block rounded-xl overflow-x-auto flex-1" v-html="codeHtml" />
+    <div class="code-block overflow-x-auto flex-1" v-html="codeHtml" />
   </div>
 </template>
 
@@ -38,9 +41,8 @@ openToast(MyToast, { message: 'Done!', type: 'success' })
 .code-block {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0.75rem;
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .code-block :deep(pre) {
   flex: 1;

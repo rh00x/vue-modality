@@ -34,18 +34,18 @@ const { dialogs } = useDialog()
 
 <style scoped>
 .backdrop {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .dialog-enter-active,
 .dialog-leave-active {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 .dialog-enter-active .dialog-card {
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
 }
 .dialog-leave-active .dialog-card {
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .dialog-enter-from,
@@ -54,10 +54,10 @@ const { dialogs } = useDialog()
 }
 .dialog-enter-from .dialog-card {
   opacity: 0;
-  transform: scale(0.95) translateY(20px);
+  transform: translateY(16px);
 }
 .dialog-leave-to .dialog-card {
   opacity: 0;
-  transform: scale(0.97) translateY(10px);
+  transform: translateY(8px);
 }
 </style>

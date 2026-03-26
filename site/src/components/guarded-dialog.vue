@@ -23,34 +23,40 @@ function cancel() {
 
 <template>
   <div class="dialog">
-    <h2 class="font-display text-2xl font-bold text-[#171717] mb-3 tracking-tight">Диалог с гардом</h2>
-    <p class="text-[#666] text-sm leading-relaxed mb-6">Backdrop, кнопка — любое закрытие заблокировано гардом.</p>
-
-    <div v-if="pendingResolve" class="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-4">
-      <p class="text-amber-700 text-sm mb-3">Гард перехватил закрытие. Продолжить?</p>
-      <div class="flex gap-2">
-        <button
-          class="px-4 py-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm rounded-xl transition-colors cursor-pointer"
-          @click="confirm"
-        >
-          Да, закрыть
-        </button>
-        <button
-          class="px-4 py-2 border border-black/[0.08] hover:bg-black/[0.03] text-[#666] text-sm rounded-xl transition-colors cursor-pointer"
-          @click="cancel"
-        >
-          Отмена
-        </button>
-      </div>
+    <div class="dialog-header">
+      <span class="font-mono text-xs text-accent tracking-wider">/// GUARD</span>
+      <span class="font-mono text-xs text-[#555]">LOCK: <span class="text-accent">ACTIVE</span></span>
     </div>
+    <div class="dialog-body">
+      <h2 class="font-display text-xl font-bold text-[#EAEAEA] mb-3 uppercase tracking-tight">Диалог с гардом</h2>
+      <p class="text-[#888] text-sm leading-relaxed mb-6 font-mono">Backdrop, кнопка — любое закрытие заблокировано гардом.</p>
 
-    <button
-      v-else
-      class="px-5 py-2.5 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm font-medium rounded-xl transition-colors cursor-pointer"
-      @click="modal?.close().catch(() => {})"
-    >
-      Попробовать закрыть
-    </button>
+      <div v-if="pendingResolve" class="p-4 border border-accent/40 bg-accent/[0.06] mb-4">
+        <p class="text-accent text-xs font-mono uppercase tracking-wider mb-3">/// GUARD INTERCEPTED — CONFIRM?</p>
+        <div class="flex gap-2">
+          <button
+            class="px-4 py-2 bg-accent hover:bg-accent-hover text-white text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+            @click="confirm"
+          >
+            [ ЗАКРЫТЬ ]
+          </button>
+          <button
+            class="px-4 py-2 border border-border hover:bg-white/[0.04] text-[#888] text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+            @click="cancel"
+          >
+            [ ОТМЕНА ]
+          </button>
+        </div>
+      </div>
+
+      <button
+        v-else
+        class="px-5 py-2.5 border border-accent/40 hover:bg-accent/[0.08] text-accent text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+        @click="modal?.close().catch(() => {})"
+      >
+        [ ПОПРОБОВАТЬ ЗАКРЫТЬ ]
+      </button>
+    </div>
   </div>
 </template>
 
@@ -59,10 +65,20 @@ function cancel() {
   width: 100%;
   max-width: 420px;
   margin: 0 1rem;
-  padding: 28px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0E0E0E;
+}
+
+.dialog-body {
+  padding: 24px 20px;
 }
 </style>
